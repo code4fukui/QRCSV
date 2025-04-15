@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" href="data:">
+<title>QRCSV</title>
+</head><body>
+<h1>QRCSV</h1>
+QRCSV is a format CSV on QR<br>
+
+<h2>reader</h2>
+
+<script type="module" src="https://code4fukui.github.io/qr-code-reader/qr-code-reader.js"></script>
+<input id=res style="width:95vw"><br>
+<qr-code-reader id=qrr></qr-code-reader><br>
+<button id=btn>stop</button>
+
+<main id=main></main>
+<br>
+
+
+<script type="module">
+import { CSV } from "https://js.sabae.cc/CSV.js";
+
+qrr.oninput = (s) => {
+  if (s.data == "") return;
+  qrr.stop();
+
+  const csv = CSV.decode(s.data);
+  main.innerHTML = "";
+  main.appendChild(CSV.makeTable(csv));
+};
+btn.onclick = () => qrr.stop();
+</script>
+
+<style>
+body {
+  font-family: sans-serif;
+}
+table {
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid black;
+  padding: 0.1em 0.4em;
+}
+</style>
+
+<h2>maker</h2>
+<h3>from a CSV data</h3>
+<blockquote style="background-color: #f0f0f0; padding: 1em; margin: 0.2em">
+&lt;script type="module" src="https://code4fukui.github.io/qr-code/qr-code.js"&gt;&lt;/script&gt;<br>
+&lt;qr-code&gt;CSV,HCR_1<br>
+身長,176.0<br>
+体重,64.7<br>
+標準体重,68.1<br>
+&lt;/qr-code&gt;
+</blockquote>
+
+<script type="module" src="https://code4fukui.github.io/qr-code/qr-code.js"></script>
+<qr-code>CSV,HCR_1
+身長,176.0
+体重,64.7
+標準体重,68.1
+</qr-code>
+
+
+<h3>from a CSV file</h3>
+1. make a CSV file (ex. test.csv)<br>
+2. write HTML<br>
+<blockquote style="background-color: #f0f0f0; padding: 1em; margin: 0.2em">
+&lt;script type="module" src="https://code4fukui.github.io/qr-code/qr-code.js"&gt;&lt;/script&gt;<br>
+&lt;qr-code src="test.csv"&gt;&lt;/qr-code&gt;
+</blockquote>
+<qr-code src="test.csv"></qr-code>
+
+<hr>
+<a href=https://github.com/code4fukui/qrcsv/>src on GitHub</a>
+
+</body></html>
