@@ -1,5 +1,7 @@
 # QRCSV
 
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
 QRCSV is a format for encoding CSV data in QR codes.
 
 ## Demo
