@@ -32,4 +32,4 @@ To generate a QR code from CSV data:
    ```
 
 ## License
-This project is licensed under the MIT License.
+MIT License — see [LICENSE](LICENSE).
